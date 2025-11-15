@@ -317,6 +317,66 @@
             </div>
 
             <form id="surveyForm">
+              <div id="survey"></div>
+            </form>
+
+            <script>
+            const sections = [
+              {
+                title: "Section 1: Leadership & Culture1",
+                questions: [
+                  "Our leadership team communicates a clear mission, vision, and priorities.",
+                  "Our employees understand how their work connects to organisational goals."
+                  // Add further questions here...
+                ]
+              },
+              {
+                title: "Section 2: Another Section Title",
+                questions: [
+                  "A question in section 2.",
+                  // More questions for section 2...
+                ]
+              }
+              // Add more sections here...
+            ];
+
+            const options = [
+              "Strongly Disagree",
+              "Disagree",
+              "Neither Agree or Disagree",
+              "Agree",
+              "Strongly Agree"
+            ];
+
+            // Generate survey HTML
+            let html = '';
+            let qCount = 1;
+            sections.forEach((section, sIdx) => {
+              html += `<div class="section">
+                  <h2 class="section-title">${section.title}</h2>`;
+              section.questions.forEach((q, qIdx) => {
+                html += `<div class="question-group">
+                  <div class="question-title">${qCount}. ${q}</div>
+                  <div class="scale-row">`;
+                options.forEach((option, oIdx) => {
+                  html += `<div class="scale-cell">
+                    <span>${option}</span>
+                    <div class="radio-option">
+                      <input type="radio" name="q${qCount}" value="${oIdx+1}" id="q${qCount}_${oIdx+1}" ${oIdx===0?'required':''}>
+                      <label for="q${qCount}_${oIdx+1}">${oIdx+1}</label>
+                    </div>
+                  </div>`;
+                });
+                html += `</div></div>`;
+                qCount++;
+              });
+              html += `</div>`;
+            });
+            document.getElementById('survey').innerHTML = html;
+            </script>
+
+            
+            <form id="surveyForm">
                 <!-- Section 1: Leadership & Culture -->
                 <div class="section">
                     <h2 class="section-title">Section 1: Leadership & Culture</h2>
