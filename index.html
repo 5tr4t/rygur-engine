@@ -323,21 +323,103 @@
             <script>
             const sections = [
               {
-                title: "Section 1: Leadership & Culture1",
+                title: "Section 1: Leadership & Culture",
                 questions: [
                   "Our leadership team communicates a clear mission, vision, and priorities.",
-                  "Our employees understand how their work connects to organisational goals."
+                  "Our employees understand how their work connects to organisational goals.",
+                  "Our stated values are visible in daily behaviour and decision-making.",
+                    "Employees feel empowered to make decisions within their scope of responsibility.",
+                    "We actively invest in learning, development, and leadership capability.",
+                    "We recognise and reward high performance and collaboration.",
+                    "Leadership regularly communicates progress, strategy, and challenges transparently.",
+                    "Our culture encourages feedback, experimentation, and continuous improvement.",
+                    "Our leadership actively seeks feedback from all levels and acts on it.",
+                    "The organization prioritizes diversity, equity, and inclusion at leadership and team levels.",
+                    "Psychological safety is visibly promoted, enabling employees to speak up without fear of negative consequences."
                   // Add further questions here...
                 ]
               },
               {
-                title: "Section 2: Another Section Title",
+                title: "Section 2: Performance & Governance",
                 questions: [
-                  "A question in section 2.",
-                  // More questions for section 2...
+                  "We have clear KPIs aligned with business outcomes and customer value.",
+                    "Responsibilities for each KPI are clearly assigned and monitored.",
+                    "Performance data is accurate, timely, and easily accessible.",
+                    "Leaders regularly review performance data and act on it.",
+                    "Key decisions are supported by data rather than intuition alone.",
+                    "Issues and risks are escalated quickly and resolved effectively.",
+                    "Our management information and dashboards are automated where possible.",
+                    "We regularly refine or retire KPIs that no longer drive performance.",
+                    "Strategic and operational goals are regularly aligned and revisited with cross-functional input.",
+                    "There are clear escalation paths for unresolved issues that may affect organizational objectives.",
+                    "Continuous feedback loops connect performance outcomes with process improvements."
                 ]
-              }
-              // Add more sections here...
+              },
+              {
+                title: "Section 3: Structure, Roles & Responsibilities",
+                questions: [
+                  "Roles and responsibilities are clearly defined and understood across teams.",
+                    "Decision rights are well-articulated, reducing ambiguity and delay.",
+                    "We have the right balance of skills and experience to deliver business goals.",
+                    "There are no critical single points of dependency in key roles or processes.",
+                    "Succession planning exists for all key positions.",
+                    "Resource capacity is regularly reviewed and adjusted as we grow.",
+                    "Cross-functional teams work effectively together with clear ownership.",
+                    "We proactively plan for future skill needs (e.g., digital, data, customer).",
+                    "Cross-team collaboration is incentivized and measured.",
+                    "All employees have clear, documented development and career pathways.",
+                    "Accountability for outcomes (not just tasks) is embedded at all levels."
+                ]
+              },
+            {
+                title: "Section 4: Process Discipline",
+                questions: [
+                  "Our key business and regulatory processes are clearly mapped and documented.",
+                    "Everyone understands the activities needed to achieve customer and business outcomes.",
+                    "Processes are standardised across teams where appropriate.",
+                    "Process documentation (SOPs, maps) is reviewed and updated regularly.",
+                    "We use automation or workflow tools to reduce manual effort and risk.",
+                    "There is a clear owner for continuous process improvement.",
+                    "Our processes deliver consistent, repeatable results.",
+                    "Feedback from customers or staff leads to tangible process improvements.",
+                    "Change management processes are standardized for all major operational changes.",
+                    "There is regular training on process adherence and improvements.",
+                    "A central repository of living process documentation is actively maintained and referenced by teams."
+                ]
+              },
+            {
+                title: "Section 5: Technology & Enablement",
+                questions: [
+                  "We have the right tools and systems to support our most critical processes.",
+                    "Our technology stack scales effectively with projected business growth.",
+                    "Data flows seamlessly between systems (limited duplication or manual re-entry).",
+                    "We actively manage and modernise our technology roadmap.",
+                    "Automation is used to eliminate manual or repetitive work where possible.",
+                    "We have visibility of key performance data across systems in real time.",
+                    "There is clear ownership of technology decisions and priorities.",
+                    "Technology investments are guided by measurable business outcomes.",
+                    "Cybersecurity and data privacy controls are embedded in technology processes.",
+                    "Technology adoption is supported by tailored learning and support for users.",
+                    "Technology investments are routinely evaluated for their alignment with business and customer value."
+                ]
+              },
+            {
+                title: "Section 6: Risk & Resilience",
+                questions: [
+                  "We proactively identify and assess key operational and strategic risks.",
+                    "Risk owners are clearly defined and accountable.",
+                    "We regularly review and discuss top risks and mitigations.",
+                    "Our controls are tested regularly to ensure they’re effective.",
+                    "We have a clear incident management process and escalation path.",
+                    "Lessons from incidents or near-misses are documented and acted upon.",
+                    "Our business continuity and resilience plans are up to date and tested.",
+                    "Risk considerations are embedded in decision-making, not treated as a separate activity.",
+                    "Emerging risks (regulatory, geopolitical, industry-specific) are systematically scanned and assessed.",
+                    "Incident response simulations or tabletop exercises are conducted regularly.",
+                    "Key risk indicators (KRIs) are tracked and influence decision-making in real time."
+                ]
+              } 
+                // Add more sections here...
             ];
 
             const options = [
@@ -376,483 +458,3 @@
             </script>
 
             
-            <form id="surveyForm">
-                <!-- Section 1: Leadership & Culture -->
-                <div class="section">
-                    <h2 class="section-title">Section 1: Leadership & Culture</h2>
-
-                    <div class="question-group">
-                        <div class="question-title">1. Our leadership team communicates a clear mission, vision, and priorities.</div>
-                        <div class="scale-container">
-                            <div class="scale-row">
-                              <div class="scale-cell">
-                                <span>Strongly Disagree</span>
-                                <div class="radio-option">
-                                  <input type="radio" name="q1" value="1" id="q1_1" required>
-                                  <label for="q1_1">1</label>
-                                </div>
-                              </div>
-                              <div class="scale-cell">
-                                <span>Disagree</span>
-                                <div class="radio-option">
-                                    <input type="radio" name="q1" value="2" id="q1_2">
-                                    <label for="q1_2">2</label>
-                                </div>
-                              </div>
-                              <div class="scale-cell">
-                                <span>Neither Agree or Disagree</span>
-                                <div class="radio-option">
-                                  <input type="radio" name="q1" value="3" id="q1_3">
-                                  <label for="q1_3">3</label>
-                                </div>
-                              </div>
-                              <div class="scale-cell">
-                                <span>Agree</span>
-                                <div class="radio-option">
-                                  <input type="radio" name="q1" value="4" id="q1_4">
-                                  <label for="q1_4">4</label>
-                                </div>
-                              </div>
-                              <div class="scale-cell">
-                                <span>Strongly Agree</span>
-                                <div class="radio-option">
-                                  <input type="radio" name="q1" value="5" id="q1_5">
-                                  <label for="q1_5">5</label>
-                                </div>
-                              </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="question-group">
-                        <div class="question-title">2. Our employees understand how their work connects to organisational goals.</div>
-                        <div class="scale-container">
-                            <div class="scale-row">
-                              <div class="scale-cell">
-                                <span>Strongly Disagree</span>
-                                <div class="radio-option">
-                                  <input type="radio" name="q1" value="1" id="q1_1" required>
-                                  <label for="q1_1">1</label>
-                                </div>
-                              </div>
-                              <div class="scale-cell">
-                                <span>Disagree</span>
-                                <div class="radio-option">
-                                    <input type="radio" name="q1" value="2" id="q1_2">
-                                    <label for="q1_2">2</label>
-                                </div>
-                              </div>
-                              <div class="scale-cell">
-                                <span>Neither Agree or Disagree</span>
-                                <div class="radio-option">
-                                  <input type="radio" name="q1" value="3" id="q1_3">
-                                  <label for="q1_3">3</label>
-                                </div>
-                              </div>
-                              <div class="scale-cell">
-                                <span>Agree</span>
-                                <div class="radio-option">
-                                  <input type="radio" name="q1" value="4" id="q1_4">
-                                  <label for="q1_4">4</label>
-                                </div>
-                              </div>
-                              <div class="scale-cell">
-                                <span>Strongly Agree</span>
-                                <div class="radio-option">
-                                  <input type="radio" name="q1" value="5" id="q1_5">
-                                  <label for="q1_5">5</label>
-                                </div>
-                              </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="question-group">
-                        <div class="question-title">3. Our stated values are visible in daily behaviour and decision-making.</div>
-                        <div class="scale-container">
-                            <div class="scale-row">
-                              <div class="scale-cell">
-                                <span>Strongly Disagree</span>
-                                <div class="radio-option">
-                                  <input type="radio" name="q1" value="1" id="q1_1" required>
-                                  <label for="q1_1">1</label>
-                                </div>
-                              </div>
-                              <div class="scale-cell">
-                                <span>Disagree</span>
-                                <div class="radio-option">
-                                    <input type="radio" name="q1" value="2" id="q1_2">
-                                    <label for="q1_2">2</label>
-                                </div>
-                              </div>
-                              <div class="scale-cell">
-                                <span>Neither Agree or Disagree</span>
-                                <div class="radio-option">
-                                  <input type="radio" name="q1" value="3" id="q1_3">
-                                  <label for="q1_3">3</label>
-                                </div>
-                              </div>
-                              <div class="scale-cell">
-                                <span>Agree</span>
-                                <div class="radio-option">
-                                  <input type="radio" name="q1" value="4" id="q1_4">
-                                  <label for="q1_4">4</label>
-                                </div>
-                              </div>
-                              <div class="scale-cell">
-                                <span>Strongly Agree</span>
-                                <div class="radio-option">
-                                  <input type="radio" name="q1" value="5" id="q1_5">
-                                  <label for="q1_5">5</label>
-                                </div>
-                              </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="question-group">
-                        <div class="question-title">4. Employees feel empowered to make decisions within their scope of responsibility.</div>
-                        <div class="scale-container">
-                            <div class="scale-row">
-                              <div class="scale-cell">
-                                <span>Strongly Disagree</span>
-                                <div class="radio-option">
-                                  <input type="radio" name="q1" value="1" id="q1_1" required>
-                                  <label for="q1_1">1</label>
-                                </div>
-                              </div>
-                              <div class="scale-cell">
-                                <span>Disagree</span>
-                                <div class="radio-option">
-                                    <input type="radio" name="q1" value="2" id="q1_2">
-                                    <label for="q1_2">2</label>
-                                </div>
-                              </div>
-                              <div class="scale-cell">
-                                <span>Neither Agree or Disagree</span>
-                                <div class="radio-option">
-                                  <input type="radio" name="q1" value="3" id="q1_3">
-                                  <label for="q1_3">3</label>
-                                </div>
-                              </div>
-                              <div class="scale-cell">
-                                <span>Agree</span>
-                                <div class="radio-option">
-                                  <input type="radio" name="q1" value="4" id="q1_4">
-                                  <label for="q1_4">4</label>
-                                </div>
-                              </div>
-                              <div class="scale-cell">
-                                <span>Strongly Agree</span>
-                                <div class="radio-option">
-                                  <input type="radio" name="q1" value="5" id="q1_5">
-                                  <label for="q1_5">5</label>
-                                </div>
-                              </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="question-group">
-                        <div class="question-title">5. We actively invest in learning, development, and leadership capability.</div>
-                        <div class="scale-container">
-                            <div class="scale-row">
-                              <div class="scale-cell">
-                                <span>Strongly Disagree</span>
-                                <div class="radio-option">
-                                  <input type="radio" name="q1" value="1" id="q1_1" required>
-                                  <label for="q1_1">1</label>
-                                </div>
-                              </div>
-                              <div class="scale-cell">
-                                <span>Disagree</span>
-                                <div class="radio-option">
-                                    <input type="radio" name="q1" value="2" id="q1_2">
-                                    <label for="q1_2">2</label>
-                                </div>
-                              </div>
-                              <div class="scale-cell">
-                                <span>Neither Agree or Disagree</span>
-                                <div class="radio-option">
-                                  <input type="radio" name="q1" value="3" id="q1_3">
-                                  <label for="q1_3">3</label>
-                                </div>
-                              </div>
-                              <div class="scale-cell">
-                                <span>Agree</span>
-                                <div class="radio-option">
-                                  <input type="radio" name="q1" value="4" id="q1_4">
-                                  <label for="q1_4">4</label>
-                                </div>
-                              </div>
-                              <div class="scale-cell">
-                                <span>Strongly Agree</span>
-                                <div class="radio-option">
-                                  <input type="radio" name="q1" value="5" id="q1_5">
-                                  <label for="q1_5">5</label>
-                                </div>
-                              </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="question-group">
-                        <div class="question-title">6. We recognise and reward high performance and collaboration.</div>
-                        <div class="scale-container">
-                            <div class="scale-row">
-                              <div class="scale-cell">
-                                <span>Strongly Disagree</span>
-                                <div class="radio-option">
-                                  <input type="radio" name="q1" value="1" id="q1_1" required>
-                                  <label for="q1_1">1</label>
-                                </div>
-                              </div>
-                              <div class="scale-cell">
-                                <span>Disagree</span>
-                                <div class="radio-option">
-                                    <input type="radio" name="q1" value="2" id="q1_2">
-                                    <label for="q1_2">2</label>
-                                </div>
-                              </div>
-                              <div class="scale-cell">
-                                <span>Neither Agree or Disagree</span>
-                                <div class="radio-option">
-                                  <input type="radio" name="q1" value="3" id="q1_3">
-                                  <label for="q1_3">3</label>
-                                </div>
-                              </div>
-                              <div class="scale-cell">
-                                <span>Agree</span>
-                                <div class="radio-option">
-                                  <input type="radio" name="q1" value="4" id="q1_4">
-                                  <label for="q1_4">4</label>
-                                </div>
-                              </div>
-                              <div class="scale-cell">
-                                <span>Strongly Agree</span>
-                                <div class="radio-option">
-                                  <input type="radio" name="q1" value="5" id="q1_5">
-                                  <label for="q1_5">5</label>
-                                </div>
-                              </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="question-group">
-                        <div class="question-title">7. Leadership regularly communicates progress, strategy, and challenges transparently.</div>
-                        <div class="scale-container">
-                            <div class="scale-row">
-                              <div class="scale-cell">
-                                <span>Strongly Disagree</span>
-                                <div class="radio-option">
-                                  <input type="radio" name="q1" value="1" id="q1_1" required>
-                                  <label for="q1_1">1</label>
-                                </div>
-                              </div>
-                              <div class="scale-cell">
-                                <span>Disagree</span>
-                                <div class="radio-option">
-                                    <input type="radio" name="q1" value="2" id="q1_2">
-                                    <label for="q1_2">2</label>
-                                </div>
-                              </div>
-                              <div class="scale-cell">
-                                <span>Neither Agree or Disagree</span>
-                                <div class="radio-option">
-                                  <input type="radio" name="q1" value="3" id="q1_3">
-                                  <label for="q1_3">3</label>
-                                </div>
-                              </div>
-                              <div class="scale-cell">
-                                <span>Agree</span>
-                                <div class="radio-option">
-                                  <input type="radio" name="q1" value="4" id="q1_4">
-                                  <label for="q1_4">4</label>
-                                </div>
-                              </div>
-                              <div class="scale-cell">
-                                <span>Strongly Agree</span>
-                                <div class="radio-option">
-                                  <input type="radio" name="q1" value="5" id="q1_5">
-                                  <label for="q1_5">5</label>
-                                </div>
-                              </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="question-group">
-                        <div class="question-title">8. Our culture encourages feedback, experimentation, and continuous improvement.</div>
-                        <div class="scale-container">
-                            <div class="scale-row">
-                              <div class="scale-cell">
-                                <span>Strongly Disagree</span>
-                                <div class="radio-option">
-                                  <input type="radio" name="q1" value="1" id="q1_1" required>
-                                  <label for="q1_1">1</label>
-                                </div>
-                              </div>
-                              <div class="scale-cell">
-                                <span>Disagree</span>
-                                <div class="radio-option">
-                                    <input type="radio" name="q1" value="2" id="q1_2">
-                                    <label for="q1_2">2</label>
-                                </div>
-                              </div>
-                              <div class="scale-cell">
-                                <span>Neither Agree or Disagree</span>
-                                <div class="radio-option">
-                                  <input type="radio" name="q1" value="3" id="q1_3">
-                                  <label for="q1_3">3</label>
-                                </div>
-                              </div>
-                              <div class="scale-cell">
-                                <span>Agree</span>
-                                <div class="radio-option">
-                                  <input type="radio" name="q1" value="4" id="q1_4">
-                                  <label for="q1_4">4</label>
-                                </div>
-                              </div>
-                              <div class="scale-cell">
-                                <span>Strongly Agree</span>
-                                <div class="radio-option">
-                                  <input type="radio" name="q1" value="5" id="q1_5">
-                                  <label for="q1_5">5</label>
-                                </div>
-                              </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                    <div class="question-group">
-                        <div class="question-title">9. Our leadership actively seeks feedback from all levels and acts on it.</div>
-                        <div class="scale-container">
-                            <div class="scale-row">
-                              <div class="scale-cell">
-                                <span>Strongly Disagree</span>
-                                <div class="radio-option">
-                                  <input type="radio" name="q1" value="1" id="q1_1" required>
-                                  <label for="q1_1">1</label>
-                                </div>
-                              </div>
-                              <div class="scale-cell">
-                                <span>Disagree</span>
-                                <div class="radio-option">
-                                    <input type="radio" name="q1" value="2" id="q1_2">
-                                    <label for="q1_2">2</label>
-                                </div>
-                              </div>
-                              <div class="scale-cell">
-                                <span>Neither Agree or Disagree</span>
-                                <div class="radio-option">
-                                  <input type="radio" name="q1" value="3" id="q1_3">
-                                  <label for="q1_3">3</label>
-                                </div>
-                              </div>
-                              <div class="scale-cell">
-                                <span>Agree</span>
-                                <div class="radio-option">
-                                  <input type="radio" name="q1" value="4" id="q1_4">
-                                  <label for="q1_4">4</label>
-                                </div>
-                              </div>
-                              <div class="scale-cell">
-                                <span>Strongly Agree</span>
-                                <div class="radio-option">
-                                  <input type="radio" name="q1" value="5" id="q1_5">
-                                  <label for="q1_5">5</label>
-                                </div>
-                              </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="question-group">
-                        <div class="question-title">10. The organization prioritizes diversity, equity, and inclusion at leadership and team levels.</div>
-                        <div class="scale-container">
-                            <div class="scale-row">
-                              <div class="scale-cell">
-                                <span>Strongly Disagree</span>
-                                <div class="radio-option">
-                                  <input type="radio" name="q1" value="1" id="q1_1" required>
-                                  <label for="q1_1">1</label>
-                                </div>
-                              </div>
-                              <div class="scale-cell">
-                                <span>Disagree</span>
-                                <div class="radio-option">
-                                    <input type="radio" name="q1" value="2" id="q1_2">
-                                    <label for="q1_2">2</label>
-                                </div>
-                              </div>
-                              <div class="scale-cell">
-                                <span>Neither Agree or Disagree</span>
-                                <div class="radio-option">
-                                  <input type="radio" name="q1" value="3" id="q1_3">
-                                  <label for="q1_3">3</label>
-                                </div>
-                              </div>
-                              <div class="scale-cell">
-                                <span>Agree</span>
-                                <div class="radio-option">
-                                  <input type="radio" name="q1" value="4" id="q1_4">
-                                  <label for="q1_4">4</label>
-                                </div>
-                              </div>
-                              <div class="scale-cell">
-                                <span>Strongly Agree</span>
-                                <div class="radio-option">
-                                  <input type="radio" name="q1" value="5" id="q1_5">
-                                  <label for="q1_5">5</label>
-                                </div>
-                              </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="question-group">
-                        <div class="question-title">11. Psychological safety is visibly promoted, enabling employees to speak up without fear of negative consequences.</div>
-                        <div class="scale-container">
-                            <div class="scale-row">
-                              <div class="scale-cell">
-                                <span>Strongly Disagree</span>
-                                <div class="radio-option">
-                                  <input type="radio" name="q1" value="1" id="q1_1" required>
-                                  <label for="q1_1">1</label>
-                                </div>
-                              </div>
-                              <div class="scale-cell">
-                                <span>Disagree</span>
-                                <div class="radio-option">
-                                    <input type="radio" name="q1" value="2" id="q1_2">
-                                    <label for="q1_2">2</label>
-                                </div>
-                              </div>
-                              <div class="scale-cell">
-                                <span>Neither Agree or Disagree</span>
-                                <div class="radio-option">
-                                  <input type="radio" name="q1" value="3" id="q1_3">
-                                  <label for="q1_3">3</label>
-                                </div>
-                              </div>
-                              <div class="scale-cell">
-                                <span>Agree</span>
-                                <div class="radio-option">
-                                  <input type="radio" name="q1" value="4" id="q1_4">
-                                  <label for="q1_4">4</label>
-                                </div>
-                              </div>
-                              <div class="scale-cell">
-                                <span>Strongly Agree</span>
-                                <div class="radio-option">
-                                  <input type="radio" name="q1" value="5" id="q1_5">
-                                  <label for="q1_5">5</label>
-                                </div>
-                              </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Section 2: Performance & Governance -->
