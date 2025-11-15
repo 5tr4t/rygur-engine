@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rygur Engine - Operations Diagnostic</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+            padding-top: 80px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .survey-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            padding: 40px;
+            margin-bottom: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f1f3f4;
+        }
+
+        .header h1 {
+            font-size: 2.4em;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            color: #666;
+            line-height: 1.5;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            padding: 15px 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #f1f3f4;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00D1FF 0%, #0099cc 100%);
+            border-radius: 4px;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .progress-text {
+            text-align: center;
+            font-size: 0.9em;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .section {
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 1.5em;
+            font-weight: 600;
+            color: #00D1FF;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f1f3f4;
+        }
+
+        .question-group {
+            margin-bottom: 35px;
+            padding: 25px;
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            background: #fafbfc;
+        }
+
+        .question-title {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+        
+        .scale-container {
+            position: relative;
+            margin: 20px 0;
+        }
+
+        .scale-labels {
+            display: grid;
+            grid-template-columns: 1fr 0.2fr 1fr 0.2fr 1fr;
+            gap: 0;
+            margin-bottom: 15px;
+            font-size: 0.8em;
+            color: #666;
+        }
+
+        .scale-labels span {
+            font-weight: 500;
+            padding: 0 5px;
+            line-height: 1.3;
+        }
+
+        .scale-labels span:nth-child(1) {
+            text-align: left;
+            grid-column: 1;
+        }
+
+        .scale-labels span:nth-child(2) {
+            text-align: center;
+            grid-column: 3;
+        }
+
+        .scale-labels span:nth-child(3) {
+            text-align: right;
+            grid-column: 5;
+        }
+               
+        .radio-scale {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10px;
+        }
+
+        .radio-option {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .radio-option input[type="radio"] {
+            opacity: 0;
+            position: absolute;
+            width: 0;
+            height: 0;
+        }
+
+        .radio-option label {
+            display: block;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid #ddd;
+            background: white;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9em;
+            font-weight: 500;
+            color: #666;
+        }
+
+        .radio-option input[type="radio"]:checked + label {
+            border-color: #00D1FF;
+            background: #00D1FF;
+            color: white;
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(0, 209, 255, 0.3);
+        }
+
+        .form-section {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 12px;
+            margin-top: 40px;
+        }
+
+        .form-section h3 {
+            color: #00D1FF;
+            font-size: 1.3em;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 1em;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.2s ease;
+            background: white;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #00D1FF;
+            box-shadow: 0 0 0 3px rgba(0, 209, 255, 0.1);
+        }
+
+        .submit-section {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid #f1f3f4;
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, #00D1FF 0%, #0099cc 100%);
+            color: white;
+            padding: 16px 40px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 209, 255, 0.3);
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 209, 255, 0.4);
+        }
+
+        .btn-submit:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .scale-labels span {
+                font-size: 0.75em;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+            
+            .survey-card {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="progress-text" id="progressText">0% Complete</div>
+    </div>
+
+    <div class="container">
+        <div class="survey-card">
+            <div class="header">
+                <h1>Rygur Engine - Operations Diagnostic</h1>
+                <p>An assessment of your operations' ability to scale.</p>
+            </div>
+
+            <form id="surveyForm">
+                <!-- Section 1: Leadership & Culture -->
+                <div class="section">
+                    <h2 class="section-title">Section 1: Leadership & Culture</h2>
+
+                    <div class="question-group">
+                        <div class="question-title">1. Our leadership team communicates a clear mission, vision, and priorities.</div>
+                        <div class="scale-container">
+                            <div class="scale-labels">
+                                <span>Strongly Disagree</span>
+                                <span>Neither Agree or Disagree</span>
+                                <span>Strongly Agree</span>
+                            </div>
+                            <div class="radio-scale">
+                                <div class="radio-option">
+                                    <input type="radio" name="q1" value="1" id="q1_1" required>
+                                    <label for="q1_1">1</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="q1" value="2" id="q1_2">
+                                    <label for="q1_2">2</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="q1" value="3" id="q1_3">
+                                    <label for="q1_3">3</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="q1" value="4" id="q1_4">
+                                    <label for="q1_4">4</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="q1" value="5" id="q1_5">
+                                    <label for="q1_5">5</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question-group">
+                        <div class="question-title">2. Our employees understand how their work connects to organisational goals.</div>
+                        <div class="scale-container">
+                            <div class="scale-labels">
+                                <span>Strongly Disagree</span>
+                                <span>Neither Agree or Disagree</span>
+                                <span>Strongly Agree</span>
+                            </div>
+                            <div class="radio-scale">
+                                <div class="radio-option">
+                                    <input type="radio" name="q2" value="1" id="q2_1" required>
+                                    <label for="q2_1">1</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="q2" value="2" id="q2_2">
+                                    <label for="q2_2">2</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="q2" value="3" id="q2_3">
+                                    <label for="q2_3">3</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="q2" value="4" id="q2_4">
+                                    <label for="q2_4">4</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="q2" value="5" id="q2_5">
+                                    <label for="q2_5">5</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question-group">
+                        <div class="question-title">3. Our stated values are visible in daily behaviour and decision-making.</div>
+                        <div class="scale-container">
+                            <div class="scale-labels">
+                                <span>Strongly Disagree</span>
+                                <span>Neither Agree or Disagree</span>
+                                <span>Strongly Agree</span>
+                            </div>
+                            <div class="radio-scale">
+                                <div class="radio-option">
+                                    <input type="radio" name="q3" value="1" id="q3_1" required>
+                                    <label for="q3_1">1</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="q3" value="2" id="q3_2">
+                                    <label for="q3_2">2</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="q3" value="3" id="q3_3">
+                                    <label for="q3_3">3</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="q3" value="4" id="q3_4">
+                                    <label for="q3_4">4</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="q3" value="5" id="q3_5">
+                                    <label for="q3_5">5</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question-group">
+                        <div class="question-title">4. Employees feel empowered to make decisions within their scope of responsibility.</div>
+                        <div class="scale-container">
+                            <div class="scale-labels">
+                                <span>Strongly Disagree</span>
+                                <span>Neither Agree or Disagree</span>
+                                <span>Strongly Agree</span>
+                            </div>
+                            <div class="radio-scale">
+                                <div class="radio-option">
+                                    <input type="radio" name="q4" value="1" id="q4_1" required>
+                                    <label for="q4_1">1</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="q4" value="2" id="q4_2">
+                                    <label for="q4_2">2</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="q4" value="3" id="q4_3">
+                                    <label for="q4_3">3</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="q4" value="4" id="q4_4">
+                                    <label for="q4_4">4</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="q4" value="5" id="q4_5">
+                                    <label for="q4_5">5</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question-group">
+                        <div class="question-title">5. We actively invest in learning, development, and leadership capability.</div>
+                        <div class="scale-container">
+                            <div class="scale-labels">
+                                <span>Strongly Disagree</span>
+                                <span>Neither Agree or Disagree</span>
+                                <span>Strongly Agree</span>
+                            </div>
+                            <div class="radio-scale">
+                                <div class="radio-option">
+                                    <input type="radio" name="q5" value="1" id="q5_1" required>
+                                    <label for="q5_1">1</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="q5" value="2" id="q5_2">
+                                    <label for="q5_2">2</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="q5" value="3" id="q5_3">
+                                    <label for="q5_3">3</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="q5" value="4" id="q5_4">
+                                    <label for="q5_4">4</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="q5" value="5" id="q5_5">
+                                    <label for="q5_5">5</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question-group">
+                        <div class="question-title">6. We recognise and reward high performance and collaboration.</div>
+                        <div class="scale-container">
+                            <div class="scale-labels">
+                                <span>Strongly Disagree</span>
+                                <span>Neither Agree or Disagree</span>
+                                <span>Strongly Agree</span>
+                            </div>
+                            <div class="radio-scale">
+                                <div class="radio-option">
+                                    <input type="radio" name="q6" value="1" id="q6_1" required>
+                                    <label for="q6_1">1</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="q6" value="2" id="q6_2">
+                                    <label for="q6_2">2</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="q6" value="3" id="q6_3">
+                                    <label for="q6_3">3</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="q6" value="4" id="q6_4">
+                                    <label for="q6_4">4</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="q6" value="5" id="q6_5">
+                                    <label for="q6_5">5</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question-group">
+                        <div class="question-title">7. Leadership regularly communicates progress, strategy, and challenges transparently.</div>
+                        <div class="scale-container">
+                            <div class="scale-labels">
+                                <span>Strongly Disagree</span>
+                                <span>Neither Agree or Disagree</span>
+                                <span>Strongly Agree</span>
+                            </div>
+                            <div class="radio-scale">
+                                <div class="radio-option">
+                                    <input type="radio" name="q7" value="1" id="q7_1" required>
+                                    <label for="q7_1">1</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="q7" value="2" id="q7_2">
+                                    <label for="q7_2">2</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="q7" value="3" id="q7_3">
+                                    <label for="q7_3">3</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="q7" value="4" id="q7_4">
+                                    <label for="q7_4">4</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="q7" value="5" id="q7_5">
+                                    <label for="q7_5">5</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question-group">
+                        <div class="question-title">8. Our culture encourages feedback, experimentation, and continuous improvement.</div>
+                        <div class="scale-container">
+                            <div class="scale-labels">
+                                <span>Strongly Disagree</span>
+                                <span>Neither Agree or Disagree</span>
+                                <span>Strongly Agree</span>
+                            </div>
+                            <div class="radio-scale">
+                                <div class="radio-option">
+                                    <input type="radio" name="q8" value="1" id="q8_1" required>
+                                    <label for="q8_1">1</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="q8" value="2" id="q8_2">
+                                    <label for="q8_2">2</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="q8" value="3" id="q8_3">
+                                    <label for="q8_3">3</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="q8" value="4" id="q8_4">
+                                    <label for="q8_4">4</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="q8" value="5" id="q8_5">
+                                    <label for="q8_5">5</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 2: Performance & Governance -->
+                <div class="section">
+                    <h2 class="section-title">Section 2: Performance & Governance</h2>
+
+                    <div class="question-group">
+                        <div class="question-title">9. We have clear KPIs aligned with business outcomes and customer value.</div>
+                        <div class="scale-container">
+                            <div class="scale-labels">
+                                <span>Strongly Disagree</span>
+                                <span>Neither Agree or Disagree</span>
+                                <span>Strongly Agree</span>
+                            </div>
+                            <div class="radio-scale">
+                                <div class="radio-option">
+                                    <input type="radio" name="q9" value="1" id="q9_1" required>
+                                    <label for="q9_1">1</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="q9" value="2" id="q9_2">
+                                    <label for="q9_2">2</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="q9" value="3" id="q9_3">
+                                    <label for="q9_3">3</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="q9" value="4" id="q9_4">
+                                    <label for="q9_4">4</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="q9" value="5" id="q9_5">
+                                    <label for="q9_5">5</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question-group">
+                        <div class="question-title">10. Responsibilities for each KPI are clearly assigned and monitored.</div>
+                        <div class="scale-container">
+                            <div class="scale-labels">
+                                <span>Strongly Disagree</span>
+                                <span>Neither Agree or Disagree</span>
+                                <span>Strongly Agree</span>
+                            </div>
+                            <div class="radio-scale">
+                                <div class="radio-option">
+                                    <input type="radio" name="q10" value="1" id="q10_1" required>
+                                    <label for="q10_1">1</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="q10" value="2" id="q10_2">
+                                    <label for="q10_2">2</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="q10" value="3" id="q10_3">
+                                    <label for="q10_3">3</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="q10" value="4" id="q10_4">
+                                    <label for="q10_4">4</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="q10" value="5" id="q10_5">
+                                    <label for="q10_5">5</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question-group">
+                        <div class="question-title">11. Performance data is accurate, timely, and easily accessible.</div>
+                        <div class="scale-container">
+                            <div class="scale-labels">
+                                <span>Strongly Disagree</span>
+                                <span>Neither Agree or Disagree</span>
+                                <span>Strongly Agree</span>
+                            </div>
+                            <div class="radio-scale">
+                                <div class="radio-option">
+                                    <input type="radio" name="q11" value="1" id="q11_1" required>
+                                    <label for="q11_1">1</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="q11" value="2" id="q11_2">
+                                    <label for="q11_2">2</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="q11" value="3" id="q11_3">
+                                    <label for="q11_3">3</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="q11" value="4" id="q11_4">
+                                    <label for="q11_4">4</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="q11" value="5" id="q11_5">
+                                    <label for="q11_5">5</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question-group">
+                        <div class="question-title">12. Leaders regularly review performance data and act on it.</div>
+                        <div class="scale-container">
+                            <div class="scale-labels">
+                                <span>Strongly Disagree</span>
+                                <span>Neither Agree or Disagree</span>
+                                <span>Strongly Agree</span>
+                            </div>
+                            <div class="radio-scale">
+                                <div class="radio-option">
+                                    <input type="radio" name="q12" value="1" id="q12_1" required>
+                                    <label for="q12_1">1</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="q12" value="2" id="q12_2">
+                                    <label for="q12_2">2</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="q12" value="3" id="q12_3">
+                                    <label for="q12_3">3</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="q12" value="4" id="q12_4">
+                                    <label for="q12_4">4</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="q12" value="5" id="q12_5">
+                                    <label for="q12_5">5</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question-group">
+                        <div class="question-title">13. Key decisions are supported by data rather than intuition alone.</div>
+                        <div class="scale-container">
+                            <div class="scale-labels">
+                                <span>Strongly Disagree</span>
+                                <span>Neither Agree or Disagree</span>
+                                <span>Strongly Agree</span>
+                            </div>
+                            <div class="radio-scale">
+                                <div class="radio-option">
+                                    <input type="radio" name="q13" value="1" id="q13_1" required>
+                                    <label for="q13_1">1
