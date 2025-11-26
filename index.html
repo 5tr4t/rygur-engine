@@ -317,144 +317,7 @@
             </div>
 
             <form id="surveyForm">
-              <div id="survey"></div>
-            </form>
-
-            <script>
-            const sections = [
-              {
-                title: "Section 1: Leadership & Culture",
-                questions: [
-                  "Our leadership team communicates a clear mission, vision, and priorities.",
-                  "Our employees understand how their work connects to organisational goals.",
-                  "Our stated values are visible in daily behaviour and decision-making.",
-                    "Employees feel empowered to make decisions within their scope of responsibility.",
-                    "We actively invest in learning, development, and leadership capability.",
-                    "We recognise and reward high performance and collaboration.",
-                    "Leadership regularly communicates progress, strategy, and challenges transparently.",
-                    "Our culture encourages feedback, experimentation, and continuous improvement.",
-                    "Our leadership actively seeks feedback from all levels and acts on it.",
-                    "The organization prioritizes diversity, equity, and inclusion at leadership and team levels.",
-                    "Psychological safety is visibly promoted, enabling employees to speak up without fear of negative consequences."
-                ]
-              },
-              {
-                title: "Section 2: Performance & Governance",
-                questions: [
-                  "We have clear KPIs aligned with business outcomes and customer value.",
-                    "Responsibilities for each KPI are clearly assigned and monitored.",
-                    "Performance data is accurate, timely, and easily accessible.",
-                    "Leaders regularly review performance data and act on it.",
-                    "Key decisions are supported by data rather than intuition alone.",
-                    "Issues and risks are escalated quickly and resolved effectively.",
-                    "Our management information and dashboards are automated where possible.",
-                    "We regularly refine or retire KPIs that no longer drive performance.",
-                    "Strategic and operational goals are regularly aligned and revisited with cross-functional input.",
-                    "There are clear escalation paths for unresolved issues that may affect organizational objectives.",
-                    "Continuous feedback loops connect performance outcomes with process improvements."
-                ]
-              },
-              {
-                title: "Section 3: Structure, Roles & Responsibilities",
-                questions: [
-                  "Roles and responsibilities are clearly defined and understood across teams.",
-                    "Decision rights are well-articulated, reducing ambiguity and delay.",
-                    "We have the right balance of skills and experience to deliver business goals.",
-                    "There are no critical single points of dependency in key roles or processes.",
-                    "Succession planning exists for all key positions.",
-                    "Resource capacity is regularly reviewed and adjusted as we grow.",
-                    "Cross-functional teams work effectively together with clear ownership.",
-                    "We proactively plan for future skill needs (e.g., digital, data, customer).",
-                    "Cross-team collaboration is incentivized and measured.",
-                    "All employees have clear, documented development and career pathways.",
-                    "Accountability for outcomes (not just tasks) is embedded at all levels."
-                ]
-              },
-            {
-                title: "Section 4: Process Discipline",
-                questions: [
-                  "Our key business and regulatory processes are clearly mapped and documented.",
-                    "Everyone understands the activities needed to achieve customer and business outcomes.",
-                    "Processes are standardised across teams where appropriate.",
-                    "Process documentation (SOPs, maps) is reviewed and updated regularly.",
-                    "We use automation or workflow tools to reduce manual effort and risk.",
-                    "There is a clear owner for continuous process improvement.",
-                    "Our processes deliver consistent, repeatable results.",
-                    "Feedback from customers or staff leads to tangible process improvements.",
-                    "Change management processes are standardized for all major operational changes.",
-                    "There is regular training on process adherence and improvements.",
-                    "A central repository of living process documentation is actively maintained and referenced by teams."
-                ]
-              },
-            {
-                title: "Section 5: Technology & Enablement",
-                questions: [
-                  "We have the right tools and systems to support our most critical processes.",
-                    "Our technology stack scales effectively with projected business growth.",
-                    "Data flows seamlessly between systems (limited duplication or manual re-entry).",
-                    "We actively manage and modernise our technology roadmap.",
-                    "Automation is used to eliminate manual or repetitive work where possible.",
-                    "We have visibility of key performance data across systems in real time.",
-                    "There is clear ownership of technology decisions and priorities.",
-                    "Technology investments are guided by measurable business outcomes.",
-                    "Cybersecurity and data privacy controls are embedded in technology processes.",
-                    "Technology adoption is supported by tailored learning and support for users.",
-                    "Technology investments are routinely evaluated for their alignment with business and customer value."
-                ]
-              },
-            {
-                title: "Section 6: Risk & Resilience",
-                questions: [
-                  "We proactively identify and assess key operational and strategic risks.",
-                    "Risk owners are clearly defined and accountable.",
-                    "We regularly review and discuss top risks and mitigations.",
-                    "Our controls are tested regularly to ensure they're effective.",
-                    "We have a clear incident management process and escalation path.",
-                    "Lessons from incidents or near-misses are documented and acted upon.",
-                    "Our business continuity and resilience plans are up to date and tested.",
-                    "Risk considerations are embedded in decision-making, not treated as a separate activity.",
-                    "Emerging risks (regulatory, geopolitical, industry-specific) are systematically scanned and assessed.",
-                    "Incident response simulations or tabletop exercises are conducted regularly.",
-                    "Key risk indicators (KRIs) are tracked and influence decision-making in real time."
-                ]
-              } 
-            ];
-
-            const options = [
-              "Strongly Disagree",
-              "Disagree",
-              "Neither Agree or Disagree",
-              "Agree",
-              "Strongly Agree"
-            ];
-
-            // Generate survey HTML
-            let html = '';
-            let qCount = 1;
-            sections.forEach((section, sIdx) => {
-              html += `<div class="section">
-                  <h2 class="section-title">${section.title}</h2>`;
-              section.questions.forEach((q, qIdx) => {
-                html += `<div class="question-group">
-                  <div class="question-title">${qCount}. ${q}</div>
-                  <div class="scale-row">`;
-                options.forEach((option, oIdx) => {
-                  html += `<div class="scale-cell">
-                    <span>${option}</span>
-                    <div class="radio-option">
-                      <input type="radio" name="q${qCount}" value="${oIdx+1}" id="q${qCount}_${oIdx+1}" ${oIdx===0?'required':''}>
-                      <label for="q${qCount}_${oIdx+1}">${oIdx+1}</label>
-                    </div>
-                  </div>`;
-                });
-                html += `</div></div>`;
-                qCount++;
-              });
-              html += `</div>`;
-            });
-            document.getElementById('survey').innerHTML = html;
-            </script>
-
+                <div id="survey"></div>
 
                 <!-- Personal Information Section -->
                 <div class="form-section">
@@ -518,16 +381,158 @@
     </div>
     
     <script>
+      console.log('Script starting...');
+      
+      const sections = [
+        {
+          title: "Section 1: Leadership & Culture",
+          questions: [
+            "Our leadership team communicates a clear mission, vision, and priorities.",
+            "Our employees understand how their work connects to organisational goals.",
+            "Our stated values are visible in daily behaviour and decision-making.",
+            "Employees feel empowered to make decisions within their scope of responsibility.",
+            "We actively invest in learning, development, and leadership capability.",
+            "We recognise and reward high performance and collaboration.",
+            "Leadership regularly communicates progress, strategy, and challenges transparently.",
+            "Our culture encourages feedback, experimentation, and continuous improvement.",
+            "Our leadership actively seeks feedback from all levels and acts on it.",
+            "The organization prioritizes diversity, equity, and inclusion at leadership and team levels.",
+            "Psychological safety is visibly promoted, enabling employees to speak up without fear of negative consequences."
+          ]
+        },
+        {
+          title: "Section 2: Performance & Governance",
+          questions: [
+            "We have clear KPIs aligned with business outcomes and customer value.",
+            "Responsibilities for each KPI are clearly assigned and monitored.",
+            "Performance data is accurate, timely, and easily accessible.",
+            "Leaders regularly review performance data and act on it.",
+            "Key decisions are supported by data rather than intuition alone.",
+            "Issues and risks are escalated quickly and resolved effectively.",
+            "Our management information and dashboards are automated where possible.",
+            "We regularly refine or retire KPIs that no longer drive performance.",
+            "Strategic and operational goals are regularly aligned and revisited with cross-functional input.",
+            "There are clear escalation paths for unresolved issues that may affect organizational objectives.",
+            "Continuous feedback loops connect performance outcomes with process improvements."
+          ]
+        },
+        {
+          title: "Section 3: Structure, Roles & Responsibilities",
+          questions: [
+            "Roles and responsibilities are clearly defined and understood across teams.",
+            "Decision rights are well-articulated, reducing ambiguity and delay.",
+            "We have the right balance of skills and experience to deliver business goals.",
+            "There are no critical single points of dependency in key roles or processes.",
+            "Succession planning exists for all key positions.",
+            "Resource capacity is regularly reviewed and adjusted as we grow.",
+            "Cross-functional teams work effectively together with clear ownership.",
+            "We proactively plan for future skill needs (e.g., digital, data, customer).",
+            "Cross-team collaboration is incentivized and measured.",
+            "All employees have clear, documented development and career pathways.",
+            "Accountability for outcomes (not just tasks) is embedded at all levels."
+          ]
+        },
+        {
+          title: "Section 4: Process Discipline",
+          questions: [
+            "Our key business and regulatory processes are clearly mapped and documented.",
+            "Everyone understands the activities needed to achieve customer and business outcomes.",
+            "Processes are standardised across teams where appropriate.",
+            "Process documentation (SOPs, maps) is reviewed and updated regularly.",
+            "We use automation or workflow tools to reduce manual effort and risk.",
+            "There is a clear owner for continuous process improvement.",
+            "Our processes deliver consistent, repeatable results.",
+            "Feedback from customers or staff leads to tangible process improvements.",
+            "Change management processes are standardized for all major operational changes.",
+            "There is regular training on process adherence and improvements.",
+            "A central repository of living process documentation is actively maintained and referenced by teams."
+          ]
+        },
+        {
+          title: "Section 5: Technology & Enablement",
+          questions: [
+            "We have the right tools and systems to support our most critical processes.",
+            "Our technology stack scales effectively with projected business growth.",
+            "Data flows seamlessly between systems (limited duplication or manual re-entry).",
+            "We actively manage and modernise our technology roadmap.",
+            "Automation is used to eliminate manual or repetitive work where possible.",
+            "We have visibility of key performance data across systems in real time.",
+            "There is clear ownership of technology decisions and priorities.",
+            "Technology investments are guided by measurable business outcomes.",
+            "Cybersecurity and data privacy controls are embedded in technology processes.",
+            "Technology adoption is supported by tailored learning and support for users.",
+            "Technology investments are routinely evaluated for their alignment with business and customer value."
+          ]
+        },
+        {
+          title: "Section 6: Risk & Resilience",
+          questions: [
+            "We proactively identify and assess key operational and strategic risks.",
+            "Risk owners are clearly defined and accountable.",
+            "We regularly review and discuss top risks and mitigations.",
+            "Our controls are tested regularly to ensure they're effective.",
+            "We have a clear incident management process and escalation path.",
+            "Lessons from incidents or near-misses are documented and acted upon.",
+            "Our business continuity and resilience plans are up to date and tested.",
+            "Risk considerations are embedded in decision-making, not treated as a separate activity.",
+            "Emerging risks (regulatory, geopolitical, industry-specific) are systematically scanned and assessed.",
+            "Incident response simulations or tabletop exercises are conducted regularly.",
+            "Key risk indicators (KRIs) are tracked and influence decision-making in real time."
+          ]
+        } 
+      ];
+
+      const options = [
+        "Strongly Disagree",
+        "Disagree",
+        "Neither Agree or Disagree",
+        "Agree",
+        "Strongly Agree"
+      ];
+
+      // Generate survey HTML
+      let html = '';
+      let qCount = 1;
+      sections.forEach((section, sIdx) => {
+        html += `<div class="section">
+            <h2 class="section-title">${section.title}</h2>`;
+        section.questions.forEach((q, qIdx) => {
+          html += `<div class="question-group">
+            <div class="question-title">${qCount}. ${q}</div>
+            <div class="scale-row">`;
+          options.forEach((option, oIdx) => {
+            html += `<div class="scale-cell">
+              <span>${option}</span>
+              <div class="radio-option">
+                <input type="radio" name="q${qCount}" value="${oIdx+1}" id="q${qCount}_${oIdx+1}" ${oIdx===0?'required':''}>
+                <label for="q${qCount}_${oIdx+1}">${oIdx+1}</label>
+              </div>
+            </div>`;
+          });
+          html += `</div></div>`;
+          qCount++;
+        });
+        html += `</div>`;
+      });
+      document.getElementById('survey').innerHTML = html;
+      console.log('Survey HTML generated');
+    </script>
+    
+    <script>
       window.addEventListener('DOMContentLoaded', function() {
+        console.log('DOM loaded, checking for companyCode...');
         const params = new URLSearchParams(window.location.search);
         const code = params.get('companyCode');
         if (code) {
           document.getElementById('companyCode').value = code;
+          console.log('Company code set:', code);
         }
       });
     </script>
     
     <script>
+        console.log('Progress tracking script starting...');
+        
         // Progress tracking
         const totalQuestions = 66;
         const totalFields = 6;
@@ -570,6 +575,7 @@
         // Form submission with improved error handling
         document.getElementById('surveyForm').addEventListener('submit', function(e) {
             e.preventDefault();
+            console.log('Form submit triggered!');
             
             const formData = new FormData(this);
             const data = {};
@@ -579,6 +585,7 @@
             }
             
             console.log('Submitting Survey Data:', data);
+            console.log('Total fields collected:', Object.keys(data).length);
             
             const submitBtn = document.getElementById('submitBtn');
             submitBtn.disabled = true;
@@ -592,12 +599,14 @@
                 body: JSON.stringify(data)
             })
             .then(response => {
+                console.log('Response received!');
                 console.log('Response status:', response.status);
-                console.log('Response headers:', response.headers);
+                console.log('Response ok:', response.ok);
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 return response.text().then(text => {
+                    console.log('Response text:', text);
                     try {
                         return JSON.parse(text);
                     } catch (e) {
@@ -611,13 +620,14 @@
                 submitBtn.textContent = 'Submitted!';
             })
             .catch(error => {
-                console.error('Error:', error);
+                console.error('Error occurred:', error);
                 alert('There was an error submitting your response. Please try again or contact support.\n\nError: ' + error.message);
                 submitBtn.disabled = false;
                 submitBtn.textContent = 'Submit Assessment';
             });
         });
         
+        console.log('Event listeners attached');
         updateProgress();
     </script>
 </body>
