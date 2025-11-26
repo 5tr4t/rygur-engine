@@ -123,7 +123,7 @@
         
         .scale-container {
             position: relative;
-            margin: 0px 0;     /* changed from 20px  */
+            margin: 0px 0;
         }
 
         .scale-row {
@@ -137,7 +137,7 @@
           display: flex;
           flex-direction: column;
           align-items: center;
-          height: 100px;  /* to be adjusted to what we want   */
+          height: 100px;
             justify-content: space-between;
         }
 
@@ -145,8 +145,8 @@
           font-size: 0.9em;
           color: #666;
           text-align: center;
-            white-space: normal;             /* Allows wrapping if text is too long */
-            min-height: 38px;                /* Ensures all labels have the same vertical space */
+            white-space: normal;
+            min-height: 38px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -154,7 +154,7 @@
         }
         
         .radio-option label {
-          margin-top: 4px; /* Optional: close button to label */
+          margin-top: 4px;
         }
 
         .radio-option {
@@ -408,7 +408,7 @@
                   "We proactively identify and assess key operational and strategic risks.",
                     "Risk owners are clearly defined and accountable.",
                     "We regularly review and discuss top risks and mitigations.",
-                    "Our controls are tested regularly to ensure they’re effective.",
+                    "Our controls are tested regularly to ensure they're effective.",
                     "We have a clear incident management process and escalation path.",
                     "Lessons from incidents or near-misses are documented and acted upon.",
                     "Our business continuity and resilience plans are up to date and tested.",
@@ -418,7 +418,6 @@
                     "Key risk indicators (KRIs) are tracked and influence decision-making in real time."
                 ]
               } 
-                // Add more sections here...
             ];
 
             const options = [
@@ -531,12 +530,11 @@
     <script>
         // Progress tracking
         const totalQuestions = 66;
-        const totalFields = 6; // personal info fields
+        const totalFields = 6;
         const progressFill = document.getElementById('progressFill');
         const progressText = document.getElementById('progressText');
         
         function updateProgress() {
-            // Count completed questions (1-66)
             let completedQuestions = 0;
             for (let i = 1; i <= totalQuestions; i++) {
                 const questionInputs = document.querySelectorAll(`input[name="q${i}"]`);
@@ -544,7 +542,6 @@
                 if (isAnswered) completedQuestions++;
             }
             
-            // Count completed personal info fields
             let completedFields = 0;
             const personalFields = ['name', 'email', 'business', 'role', 'industry', 'orgSize'];
             personalFields.forEach(field => {
@@ -559,7 +556,6 @@
             progressFill.style.width = percentage + '%';
             progressText.textContent = percentage + '% Complete';
             
-            // Enable/disable submit button
             const submitBtn = document.getElementById('submitBtn');
             if (percentage === 100) {
                 submitBtn.disabled = false;
@@ -568,28 +564,25 @@
             }
         }
         
-        // Add event listeners to all form inputs
         document.addEventListener('change', updateProgress);
         document.addEventListener('input', updateProgress);
         
-        // Form submission
+        // Form submission with improved error handling
         document.getElementById('surveyForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Collect all form data
             const formData = new FormData(this);
             const data = {};
             
-            // Get all responses
             for (let [key, value] of formData.entries()) {
                 data[key] = value;
             }
             
-            console.log('Survey Data:', data);
+            console.log('Submitting Survey Data:', data);
             
-            // Here you would typically send the data to your n8n webhook
-            // Replace 'YOUR_N8N_WEBHOOK_URL' with your actual webhook URL
-            
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
             
             fetch('https://str4t.app.n8n.cloud/webhook-test/5e507fd0-4e9d-42ff-906f-dd2343d574f0', {
                 method: 'POST',
@@ -598,21 +591,33 @@
                 },
                 body: JSON.stringify(data)
             })
-            .then(response => response.json())
+            .then(response => {
+                console.log('Response status:', response.status);
+                console.log('Response headers:', response.headers);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.text().then(text => {
+                    try {
+                        return JSON.parse(text);
+                    } catch (e) {
+                        return { message: text || 'Success' };
+                    }
+                });
+            })
             .then(result => {
                 console.log('Success:', result);
-                // Redirect to results page or show success message
+                alert('Thank you! Your Operations Diagnostic input has been submitted successfully.');
+                submitBtn.textContent = 'Submitted!';
             })
             .catch(error => {
                 console.error('Error:', error);
+                alert('There was an error submitting your response. Please try again or contact support.\n\nError: ' + error.message);
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Submit Assessment';
             });
-            
-            
-            // For now, show success message
-            alert('Thank you! Your Operations Diagnostic input has been submitted successfully.');
         });
         
-        // Initialize progress on page load
         updateProgress();
     </script>
 </body>
